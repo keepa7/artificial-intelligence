@@ -1,0 +1,41 @@
+# DFS for the given graph
+
+graph = {
+    'S': ['A', 'B', 'C'],
+    'A': ['D', 'E'],
+    'B': ['G'],
+    'C': ['F'],
+    'D': ['H'],
+    'E': ['G'],
+    'F': ['G'],
+    'G': [],
+    'H': []
+}
+
+start = 'S'
+goal = 'G'
+
+visited = set()
+path = []
+
+def dfs(node):
+    visited.add(node)
+    path.append(node)
+
+    if node == goal:
+        return True
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            if dfs(neighbor):
+                return True
+
+    path.pop()
+    return False
+
+
+if dfs(start):
+    print("Goal node found:", goal)
+    print("DFS Path:", " -> ".join(path))
+else:
+    print("Goal node not found")
