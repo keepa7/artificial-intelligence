@@ -1,0 +1,9 @@
+enemy(country_a,america).
+american(robert).
+owns(country_a,t1).
+missile(t1).
+
+hostile(R):-enemy(R,america).
+weapon(Q):-missile(Q).
+sells(robert,Q,R):-missile(Q),owns(R,Q).
+criminal(P):-american(P),weapon(Q),sells(P,Q,R).
