@@ -1,0 +1,37 @@
+# Hebbian Learning for OR gate
+
+data = [
+    (0, 0, 0),
+    (0, 1, 1),
+    (1, 0, 1),
+    (1, 1, 1)
+]
+
+w1 = 0
+w2 = 0
+bias = 1
+wb = 0
+
+# Training
+for x1, x2, y in data:
+    w1 = w1 + x1 * y
+    w2 = w2 + x2 * y
+    wb = wb + bias * y
+
+print("Final weights:")
+print("w1 =", w1)
+print("w2 =", w2)
+print("Bias weight =", wb)
+
+# Testing
+print("\nOR Gate Output:")
+
+for x1, x2, y in data:
+    net = x1 * w1 + x2 * w2 + bias * wb
+
+    if net >= 3:
+        output = 1
+    else:
+        output = 0
+
+    print(x1, x2, "->", output)
