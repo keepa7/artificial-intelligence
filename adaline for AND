@@ -1,0 +1,62 @@
+# Adaline Network for AND Gate
+
+# Learning rate
+alpha = 0.1
+
+# Bias
+bias = 1
+
+# Initial weights
+w1 = 0
+w2 = 0
+
+# AND gate training data
+data = [
+    (0, 0, 0),
+    (0, 1, 0),
+    (1, 0, 0),
+    (1, 1, 1)
+]
+
+print("BY KEEPA MAHARJAN")
+
+# Training
+for epoch in range(10):
+
+    print("\nEpoch:", epoch + 1)
+
+    for x1, x2, target in data:
+
+        # Calculate output
+        y = x1 * w1 + x2 * w2 + bias
+
+        # Calculate error
+        error = target - y
+
+        # Update weights
+        w1 = w1 + alpha * error * x1
+        w2 = w2 + alpha * error * x2
+
+        # Update bias
+        bias = bias + alpha * error
+
+        print("Input:", x1, x2,
+              "Target:", target,
+              "Output:", round(y, 3),
+              "Error:", round(error, 3))
+
+print("\nFinal Weights:")
+print("w1 =", round(w1, 3))
+print("w2 =", round(w2, 3))
+print("Bias =", round(bias, 3))
+
+# Testing
+print("\nTesting AND Gate")
+
+for x1, x2, target in data:
+
+    y = x1 * w1 + x2 * w2 + bias
+
+    output = 1 if y >= 0.5 else 0
+
+    print(x1, x2, "->", output)
